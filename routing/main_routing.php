@@ -20,6 +20,11 @@ if (isset($_GET['method']))
 		        echo json_encode($ReturnVal);
 		    }
                     
+                      if ($method == "get_shared_activities") {
+		        $ReturnVal = $IntrestController->get_shared_activities($_GET);
+		        echo json_encode($ReturnVal);
+		    }
+                    
                     if ($method == "get_selected_image") {
 		        $ReturnVal = $IntrestController->get_selected_image($_GET);
               
@@ -50,6 +55,47 @@ if (isset($_GET['method']))
                     
                     if ($method == "upload_shared_intrest") {
 		        $ReturnVal = $IntrestController->upload_shared_intrest($_POST);
+		        print ($ReturnVal);
+		    }
+                    
+                     if ($method == "get_all_intrest_details") {
+		        $ReturnVal = $IntrestController->get_all_intrest_detail($_POST['intrest_id']);
+		        print ($ReturnVal);
+		    }
+                    
+                     if ($method == "get_all_user_details") {
+		        $ReturnVal = $UserController->get_all_user_details($_POST);
+		        print ($ReturnVal);
+		    }
+                      if ($method == "make_intrest_like") {
+		        $ReturnVal = $IntrestController->make_intrest_like($_POST);
+		        print ($ReturnVal);
+		    }
+                       if ($method == "join_activity_action") {
+		        $ReturnVal = $IntrestController->join_activity_action($_POST);
+		        print ($ReturnVal);
+		    }
+                    
+                    
+                      if ($method == "get_like_count") {
+                            $intrest_id = $_POST['intrest_id'];
+         
+		        $ReturnVal = $IntrestController->get_like_count($intrest_id);
+		        print ($ReturnVal);
+		    }
+                    
+                     if ($method == "get_like_status") {
+		        $ReturnVal = $IntrestController->get_like_status($_POST);
+		        print ($ReturnVal);
+		    }
+                    
+                     if ($method == "get_join_status") {
+		        $ReturnVal = $IntrestController->get_join_status($_POST);
+		        print ($ReturnVal);
+		    }
+                    
+                       if ($method == "get_intrest_type") {
+		        $ReturnVal = $IntrestController->get_intrest_type($_POST);
 		        print ($ReturnVal);
 		    }
                     

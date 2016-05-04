@@ -33,6 +33,17 @@ class user_controller {
                
         return json_encode($User);
     }
+    
+     function get_all_user_details($data){
+        
+        $Email = "";
+        
+        extract($data);
+        
+        $User = User::get_all_user_details($Email);
+               
+        return json_encode($User);
+    }
 
     }
 ?>

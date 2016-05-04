@@ -187,6 +187,45 @@ require_once ('../config/db_access_interface.php');
                      
         }
         
+         public function get_all_user_details($email){
+            
+                     $dbObject = new db_access_interface();
+                     $dbObject2 = new ConnectionManager();
+                     $db = $dbObject->connect();
+ 
+                     $sQuery = "SELECT user_table.id,
+                                user_table.email,
+                                user_table.dob,
+                                user_table.contact,
+                                user_table.flag,
+                                user_table.username,
+                                CONCAT(user_table.fname,' ',user_table.lname) as name
+                                FROM `user_table` 
+                                WHERE user_table.email = '".$email."'";
+
+
+                     $result = $db->query($sQuery);
+                     $dbOn = $dbObject->connect2();
+                     $rowcol= $dbObject->Convert_To_ARRAY($result);
+                     
+                     
+                     if($result->num_rows == 0){
+                         
+                           $JSONReponse[] = array('response'=>'0');
+                             
+                     }  else {
+                            $JSONReponse[] = array('response'=>'1',
+                                                    'email'=>$rowcol[0]['email'],
+                                                    'dob'=>$rowcol[0]['dob'],
+                                                    'contact'=>$rowcol[0]['contact'],
+                                                    'flag'=>$rowcol[0]['flag'],
+                                                    'username'=>$rowcol[0]['username'],
+                                                    'name'=>$rowcol[0]['name']);
+                     }
+                        
+                     return $JSONReponse;
+	}
+        
         
 
 }
